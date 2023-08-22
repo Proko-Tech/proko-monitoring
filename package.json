@@ -1,0 +1,13 @@
+{
+  "name": "proko-monitoring",
+  "version": "1.0.0",
+  "description": "Server monitoring platform for NodeJS Apps.",
+  "main": "index.js",
+  "repository": "https://github.com/Proko-Tech/proko-monitoring.git",
+  "license": "MIT",
+  "workspaces": [
+    "client_package/*",
+    "monitoring_dashboard/*",
+    "server/*"
+  ]
+}
