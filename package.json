@@ -5,9 +5,12 @@
   "main": "index.js",
   "repository": "https://github.com/Proko-Tech/proko-monitoring.git",
   "license": "MIT",
+  "private": true,
   "workspaces": [
     "client_package/*",
     "monitoring_dashboard/*",
+    "database/*",
     "server/*"
-  ]
+  ],
+  "packageManager": "yarn@3.6.3"
 }
