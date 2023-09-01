@@ -1,5 +1,5 @@
 {
-  "name": "client_package",
+  "name": "proko_monitoring",
   "packageManager": "yarn@3.6.3",
   "dependencies": {
     "fs": "^0.0.1-security",
