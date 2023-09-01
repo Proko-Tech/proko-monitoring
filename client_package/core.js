@@ -1,8 +1,6 @@
 import parser from './parser.js';
 import ServiceClient from './clients/service_client.js';
-import util from 'util';
 
-const sleep = util.promisify(setTimeout);
 const service_client = new ServiceClient();
 
 class CheckInitialStatus {
