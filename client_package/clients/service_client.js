@@ -15,6 +15,10 @@ export default class ServiceClient extends BaseHttpClient {
    * @constructor
    */
   async PostService(data, end_point = 'service') {
-    return await this.sendData(end_point, 'POST', data);
+    try {
+      return await this.sendData(end_point, 'POST', data);
+    } catch (err) {
+      return {data: {ok: false}, err};
+    }
   }
 }
