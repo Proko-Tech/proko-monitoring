@@ -1,6 +1,13 @@
 {
-  "name": "client_package",
-  "version": "1.0.0",
-  "main": "index.ts",
-  "license": "MIT"
+  "name": "proko_monitoring",
+  "packageManager": "yarn@3.6.3",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "luxon": "^3.4.2",
+    "node-cron": "^3.0.2",
+    "node-fetch": "^3.3.2",
+    "rc": "^1.2.8"
+  },
+  "main": "core.js",
+  "type": "module"
 }
