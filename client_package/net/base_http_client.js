@@ -16,7 +16,7 @@ export default class BaseHttpClient {
    * @returns {Promise<any>}
    * @private
    */
-  async _makeRequest(end_point, options) {
+  async #makeRequest(end_point, options) {
     const response = await fetch(`${this.protocol_}${this.host_}/${end_point}`, {
       ...options,
       credentials: 'include'
@@ -30,7 +30,7 @@ export default class BaseHttpClient {
    * @returns {Promise<*>}
    */
   async retrieveData(end_point) {
-    return this._makeRequest(end_point)
+    return this.#makeRequest(end_point)
   }
 
   /**
@@ -46,7 +46,7 @@ export default class BaseHttpClient {
       credentials: 'include'
     };
 
-    return this._makeRequest(end_point, {
+    return this.#makeRequest(end_point, {
       method,
       headers,
       body: JSON.stringify(data)
