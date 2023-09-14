@@ -20,7 +20,7 @@ module.exports = {
     connection: SQLConnection,
     migrations: {
       directory: './migrations',
-      tabkename: 'knex_migrations'
+      tablename: 'knex_migrations'
     },
     useNullAsDefault: true,
   },

@@ -1,22 +1,76 @@
 const http = require('http');
-const server = http.createServer();
+const app = require('./app/index');
 
-const serviceHandler = require('./handlers/serviceHandler/index')
+const debug = require('debug')('Proko_Park_Monitoring:server');
+const server = http.createServer(app);
+
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
 
 /**
- * Server listener that handles all requests.
+ * Listen on provided port, on all network interfaces.
  */
-server.on('request', async (request, response) => {
-  if (request.method === 'POST' && request.url.split('/')[1] === 'service') {
-    await serviceHandler.handleRequest(request, response);
-  } else {
-    response.writeHead(400, {'Content-Type': 'text/plain'});
-    response.end('end');
-  }
-});
 
-const port = 3000;
 server.listen(port);
-console.log(`Listening at ${port}`);
+server.on('error', onError);
+server.on('listening', onListening);
 
-module.exports = server;
+/**
+ * Event listener for HTTP server "error" event.
+ *
+ * @param {object} error: The error object
+ */
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+function onListening() {
+  console.log('Started app on port', port);
+  const addr = server.address();
+  const bind =
+      typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
+
+/**
+ * Normalize a port into a number, string, or false.
+ *
+ * @param {number} val: port number
+ * @return {Port} port: normalized port number
+ */
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
