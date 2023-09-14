@@ -9,7 +9,6 @@ exports.up = function(knex) {
       tbl.increments('service_end_point_stats_id').unique().notNullable();
       tbl.integer('service_id').notNullable();
       tbl.integer('service_end_point_id').notNullable();
-      tbl.timestamp(true, true);
       tbl.timestamp('request_start_time').notNullable();
       tbl.timestamp('request_end_time');
       tbl.integer('elapsed_time_secs');
